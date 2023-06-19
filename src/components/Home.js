@@ -20,11 +20,11 @@ const cards = [1, 2, 3, 4, 5, 6];
 const defaultTheme = createTheme();
 
 
-const Home = () => {
+const Home = ({open, handleOpen}) => {
     return (
         <ThemeProvider theme={defaultTheme}>
           <CssBaseline />
-          <Header/>
+          <Header open={open} handleOpen={handleOpen}/>
           <main>
             {/* Hero unit */}
             <Box

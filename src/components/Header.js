@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AppBar from '@mui/material/AppBar';
 import Badge from '@material-ui/core/Badge';
@@ -10,10 +10,10 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import AdUnitsIcon from '@mui/icons-material/AdUnits'
 
+const Header = ( {open, handleOpen} ) => {
 
-
-const Header = () => {
   return (
     <Box>
         <AppBar position="relative" style={{ display: "flex", flexDirection: "row", justifyContect: "space-between", padding: "10px"  }}>
@@ -26,6 +26,9 @@ const Header = () => {
                 </div>
 
                 <div style={{ marginLeft: "auto" }}>
+                    <IconButton color="inherit" onClick={handleOpen}>
+                        <AdUnitsIcon />
+                    </IconButton>
                     <IconButton color="inherit">
                         <MailIcon />
                     </IconButton>
