@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Outlet } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -11,14 +11,27 @@ import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import { Link } from 'react-router-dom';
 // import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Footer from './Footer';
 import Header from './Header'
 
-const cards = [1, 2, 3, 4, 5, 6];
+const cards = [
+  {
+    id: 1,
+    name: "Wedding"
+  },
+  {
+    id: 2,
+    name: "Portrait"
+  },
+  {
+    id: 3,
+    name: "Family"
+  }
+];
 const defaultTheme = createTheme();
-
 
 const Home = ({open, handleOpen}) => {
     return (
@@ -63,7 +76,7 @@ const Home = ({open, handleOpen}) => {
               {/* End hero unit */}
               <Grid container spacing={4}>
                 {cards.map((card) => (
-                  <Grid item key={card} xs={12} sm={6} md={4}>
+                  <Grid item key={card.id} xs={12} sm={6} md={4}>
                     <Card
                       sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                     >
@@ -76,9 +89,12 @@ const Home = ({open, handleOpen}) => {
                         image="https://source.unsplash.com/random?wallpapers"
                       />
                       <CardContent sx={{ flexGrow: 1 }}>
+
+                        <Link to="/gallery" category="wedding">
                         <Typography gutterBottom variant="h5" component="h2">
-                          Heading
+                          {card.name}
                         </Typography>
+                        </Link>
                         <Typography>
                           This is a media card. You can use this section to describe the
                           content.
@@ -93,6 +109,7 @@ const Home = ({open, handleOpen}) => {
                 ))}
               </Grid>
             </Container>
+            <Outlet />
           </main>
          <Footer/>
         </ThemeProvider>

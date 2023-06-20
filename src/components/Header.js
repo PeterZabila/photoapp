@@ -12,11 +12,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import AdUnitsIcon from '@mui/icons-material/AdUnits'
 
-const Header = ( {open, handleOpen} ) => {
+const Header = ( {handleOpen} ) => {
 
   return (
     <Box>
-        <AppBar position="relative" style={{ display: "flex", flexDirection: "row", justifyContect: "space-between", padding: "10px"  }}>
+        <AppBar position="relative" sx={{ backgroundColor: 'teal', opacity: "0.5", position: "sticky", top: "0" }} style={{ display: "flex", flexDirection: "row", justifyContect: "space-between", padding: "10px"  }}>
            
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center"}}>
                     <div><CameraIcon sx={{ mr: 2 }} /></div>
