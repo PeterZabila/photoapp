@@ -36,7 +36,7 @@ const images = [
     },
 ]
 
-const Gallery = () => {
+const Gallery = ({ name }) => {
   return (
     <Container>
         <Box>

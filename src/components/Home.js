@@ -90,7 +90,7 @@ const Home = ({open, handleOpen}) => {
                       />
                       <CardContent sx={{ flexGrow: 1 }}>
 
-                        <Link to="/gallery" category="wedding">
+                        <Link to="/gallery" category={card.name}>
                         <Typography gutterBottom variant="h5" component="h2">
                           {card.name}
                         </Typography>
