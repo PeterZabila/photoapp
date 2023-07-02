@@ -19,25 +19,7 @@ useEffect(() => {
   }
 })
 
-if(open && mark === "account") {
-  return createPortal(
-    <div className={style.modal_background } onClick={onClose}>
-      <div className={style.modal_card } onClick={e => e.stopPropagation}>
-          <p>My contact information</p>
-          <ul>
-            <li>My cell: +380631353552</li>
-            <li>Email me: petrozabila@gmail.com</li>
-          </ul>
-          {/* <form>
-            <textarea
-                name='your message'
-                value=""
-            />
-          </form> */}
-          <button onClick={onClose}>Close</button>
-      </div>
-    </div>, element);
-} if (open) {
+if(open) {
   return createPortal(
     <Dialog open={open} onClose={onClose}>
       <DialogContent>

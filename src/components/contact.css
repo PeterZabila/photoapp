@@ -64,7 +64,7 @@ input, textarea {
     background: transparent;
     border: 2px solid var(--color-primary-variant);
     resize: none;
-    color: var(--color-white);
+    color: var(--color-black);
 }
 
 h1, h2, h3, h4, h5 {

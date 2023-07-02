@@ -18,9 +18,8 @@ const Header = ( { open, handleOpen } ) => {
     const [mark, setMark] = useState('');
 
     const handleMark = (e) => {
-        setMark(e.target.name)
+        setMark(e.target.name);
         handleOpen(mark)
-        
     }
 
   return (
@@ -38,9 +37,11 @@ const Header = ( { open, handleOpen } ) => {
                
 
                 <div style={{ marginLeft: "auto" }}>
-                    <IconButton  color="inherit" name="cell" onClick={handleMark}  >
-                        <AdUnitsIcon />
-                    </IconButton>
+                    <a href="tel:+380631353552">
+                        <IconButton  color="inherit" name="cell" >
+                            <AdUnitsIcon />
+                        </IconButton>
+                    </a>
                     <Link to="/contacts" style={{ textDecoration: "none", color: "white" }}>
                         <IconButton color="inherit">
                             <MailIcon />
