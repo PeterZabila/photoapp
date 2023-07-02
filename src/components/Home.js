@@ -15,20 +15,30 @@ import { Link } from 'react-router-dom';
 // import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Footer from './Footer';
-import Header from './Header'
+import Header from './Header';
+
+import pic10 from '../images/wedding1/10.jpg';
+import pic11 from '../images/wedding1/13.jpeg';
+import pic12 from '../images/wedding1/15.jpeg'
 
 const cards = [
   {
     id: 1,
-    name: "Wedding"
+    name: "Wedding",
+    src: pic10,
+    description: "Найщасливіщий день у вашому житті обов'язково має бути на фото. Дозвольте супроволдувати вас у цей день"
   },
   {
     id: 2,
-    name: "Portrait"
+    name: "Portrait",
+    src: pic12,
+    description: "Пор"
   },
   {
     id: 3,
-    name: "Family"
+    name: "Family",
+    src: pic11,
+    description: ""
   }
 ];
 const defaultTheme = createTheme();
@@ -37,7 +47,7 @@ const Home = ({open, handleOpen}) => {
     return (
         <ThemeProvider theme={defaultTheme}>
           <CssBaseline />
-          <Header open={open} handleOpen={handleOpen}/>
+          {/* <Header open={open} handleOpen={handleOpen}/> */}
           <main>
             {/* Hero unit */}
             <Box
@@ -86,7 +96,7 @@ const Home = ({open, handleOpen}) => {
                           // 16:9
                           pt: '56.25%',
                         }}
-                        image="https://source.unsplash.com/random?wallpapers"
+                        image={card.src}
                       />
                       <CardContent sx={{ flexGrow: 1 }}>
 
@@ -101,17 +111,17 @@ const Home = ({open, handleOpen}) => {
                         </Typography>
                       </CardContent>
                       <CardActions>
+                      <Link to="/gallery" category={card.name}>
                         <Button size="small">View</Button>
-                        <Button size="small">Edit</Button>
+                      </Link>
                       </CardActions>
                     </Card>
                   </Grid>
                 ))}
               </Grid>
             </Container>
-            <Outlet />
+      
           </main>
-         <Footer/>
         </ThemeProvider>
       );
 }
