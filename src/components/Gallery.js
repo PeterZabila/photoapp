@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { ImageList, ImageListItem, Box, Typography } from '@material-ui/core';
 import Container from '@mui/material/Container';
 import ImageGallery from "react-image-gallery";
@@ -14,45 +14,22 @@ import img3 from '../images/wedding1/04.jpg'
 import img4 from '../images/wedding1/05.jpg'
 import img5 from '../images/wedding1/06.jpg'
 
-// const pics = [
-//     {
-//       original: img,
-//       thumbnail: img
-//     },
-//     {
-//         original: img1,
-//         thumbnail: img1
-//       },
-//       {
-//         original: img2,
-//         thumbnail: img2
-//       },
-//       {
-//         original: img3,
-//         thumbnail: img3
-//       },
-//       {
-//         original: img4,
-//         thumbnail: img4
-//       },
-//       {
-//         original: img5,
-//         thumbnail: img5
-//       },
-//   ];
 
   const data = [
     {
       image: img,
-      caption: "L&A"
+      caption: "L&A",
+      tag: 'w1'
     },
     {
         image: img1,
-        caption: "V&O"
+        caption: "V&O",
+        tag: 'w2'
       },
       {
         image: img2,
-        caption: "V&A"
+        caption: "V&A",
+        tag: 'w3'
       },
       {
         image: img3,
@@ -79,40 +56,9 @@ import img5 from '../images/wedding1/06.jpg'
     opacity: '0.5'
   };
 
-// const images = [
-//     {
-//         id: uuidv4(),
-//         loc: img,
-//         name: "L&A"
-//     },
-//     {
-//         id: uuidv4(),
-//         loc: img1,
-//         name: "V&O"
-//     },
-//     {
-//         id: uuidv4(),
-//         loc: img2,
-//         name: "V&A"
-//     },
-//     {
-//         id: uuidv4(),
-//         loc: img3,
-//         name: "A&V"
-//     },
-//     {
-//         id: uuidv4(),
-//         loc: img4,
-//         name: "L&A"
-//     },
-//     {
-//         id: uuidv4(),
-//         loc: img5,
-//         name: "L&A"
-//     },
-// ]
 
 const Gallery = ({ name, setSelectedImg }) => {
+  const [tag, setTag] = useState('w2')
 
   const containerRef = useRef(null);
   useEffect(() => {
@@ -121,25 +67,27 @@ const Gallery = ({ name, setSelectedImg }) => {
         container: containerRef.current,
         cloudName: 'dq9kynjaj',
         aspectRatio: '16:9',
-        mediaAssets: [{ tag: 'w1' }],
+        mediaAssets: [{ tag }],
         carouselStyle: 'indicators',
         cariuselLocation: 'bottom'
       })
       .render()
     }
-  }, []);
+  }, [tag]);
 
 
   return (
     <Container>
         <Box>
-        {/* <ImageList variant="masonry" cols={3} gap={8}>
-            {images && images.map(item => (
-                <ImageListItem key={item.id} style={{position: "relative"}}>
+        <ImageList variant="masonry" cols={3} gap={8} p={20}>
+            {data && data.map(item => (
+                <ImageListItem key={item.caption} tag={item.tag} style={{position: "relative"}} onClick={() => setTag(item.tag)}>
                     <img
-                        src={item.loc}
-                        alt={item.id}
+                        src={item.image}
+                        alt={item.caption}
+                        tag={item.tag}
                         loading="lazy"
+                        onClick={() => setTag(item.tag)}
                     />
                     <Typography style={{
                         position: "absolute", 
@@ -148,24 +96,13 @@ const Gallery = ({ name, setSelectedImg }) => {
                         transform: "translate(-50%, -50%)",
                         opacity: "0.3",
                         fontSize: "50px"
-                        }}>{item.name}</Typography>
+                        }}>{item.caption}</Typography>
                 </ImageListItem>
             ))}
         </ImageList>
 
-        <ImageGallery
-            items={pics}
-            showPlayButton={true}
-            showFullscreenButton={true}
-            slideInterval={1000}
-            slideOnThumbnailOver={true}
-            showIndex={true}
-            onPlay={() => {
-           
-        }} */}
-      {/* /> */}
 
-    <div
+    {/* <div
           style={{
             padding: "0 20px",
           }}
@@ -195,7 +132,7 @@ const Gallery = ({ name, setSelectedImg }) => {
               margin: "40px auto",
             }}
           />
-        </div>
+        </div> */}
 
           <div ref={containerRef} style={{ width: '1200px', margin: 'auto' }}></div>
     </Box>

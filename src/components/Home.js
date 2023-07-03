@@ -68,7 +68,7 @@ const Home = ({open, handleOpen}) => {
                   My photography portfolio
                 </Typography>
                 <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                  Something to say about me. My passion to photography and th process of making photos makes me to go on and develop my skills in this field.
+                  Something to say about me. My passion to photography and the process of making photos makes me to go on and develop my skills in this field.
                 </Typography>
                 <Stack
                   sx={{ pt: 4 }}
