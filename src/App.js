@@ -29,8 +29,8 @@ function App() {
     
         <Routes>
           <Route path="/" element={<SharedLayout open={open} handleOpen={handleOpen} mark={mark} />}>
-            <Route index element={<Home />}/>
-            <Route path="gallery" element={<Gallery setSelectedImg={setSelectedImg}/>}/>
+            <Route index element={<Home handleMark={handleMark}/>}/>
+            <Route path="gallery" element={<Gallery setSelectedImg={setSelectedImg} mark={mark}/>}/>
             <Route path="contacts" element={<Contacts/>}/>
             {/* </Route> */}
           </Route>
