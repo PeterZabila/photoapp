@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
@@ -6,14 +6,35 @@ import Modal from "./components/Modal";
 import Gallery from './components/Gallery';
 import Contacts from './components/Contacts';
 import SharedLayout from './components/SharedLayout';
+import { gapi } from 'gapi-script';
 
+const clientId = "281450817984-lbo71ppusiug27vs7jvqv926bt9n2eiu.apps.googleusercontent.com";
 
 function App() {
 
   const [open, setOpen] = useState(false);
   const [mark, setMark] = useState("");
-
   const [selectedImg, setSelectedImg] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const grantAccess = () => {
+    setLoggedIn(true)
+  }
+
+  const denyAccess = () => {
+    setLoggedIn(false)
+  }
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: ""
+      })
+    };
+
+    gapi.load('client:auth2', start)
+  })
 
   const handleOpen = (mark) => {
     setMark(mark)
@@ -35,7 +56,7 @@ function App() {
             {/* </Route> */}
           </Route>
         </Routes>
-        <Modal open={open} onClose={() => setOpen(false)} mark={mark}/>
+        <Modal open={open} onClose={() => setOpen(false)} mark={mark} loggedIn={loggedIn} grantAccess={grantAccess} denyAccess={denyAccess}/>
       
     </BrowserRouter>
     

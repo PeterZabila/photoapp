@@ -9,6 +9,10 @@ import img3 from '../images/wedding1/04.jpg'
 import img4 from '../images/wedding1/05.jpg'
 import img5 from '../images/wedding1/06.jpg'
 
+import mod1 from '../images/portrait/mod1.jpg';
+import mod2 from '../images/portrait/mod2.jpg';
+import mod3 from '../images/portrait/mod3.jpg';
+
   // const captionStyle = {
   //   fontSize: "5em",
   //   fontWeight: "bold",
@@ -24,37 +28,37 @@ import img5 from '../images/wedding1/06.jpg'
     {
       id: 1,
       image: img,
-      caption: "L&A",
+      caption: "S&A",
       tag: 'w1'
     },
     {
         id: 2,
         image: img1,
-        caption: "V&O",
+        caption: "L&A",
         tag: 'w2'
       },
       {
         id: 3,
         image: img2,
-        caption: "V&A",
+        caption: "O&Z",
         tag: 'w3'
       },
       {
         id: 4,
         image: img3,
-        caption: "A&V",
+        caption: "T&A",
         tag: 'w4'
       },
       {
         id: 5,
         image: img4,
-        caption: "L&A",
+        caption: "L&R",
         tag: 'w5'
       },
       {
         id: 6,
         image: img5,
-        caption: "L&A",
+        caption: "O&V",
         tag: 'w6'
       },
   ];
@@ -62,21 +66,21 @@ import img5 from '../images/wedding1/06.jpg'
   const portraitData = [
     {
       id: 1,
-      image: img,
+      image: mod1,
       caption: "Olena",
-      tag: 'Olena'
+      tag: 'k'
     },
     {
       id: 2,
-      image: img1,
+      image: mod2,
       caption: "Anna",
-      tag: 'Anna'
+      tag: 'l'
     },
     {
       id: 3,
-      image: img2,
+      image: mod3,
       caption: "Anastasia",
-      tag: 'Anastasia'
+      tag: 'c'
     },
   ]
 
@@ -102,9 +106,12 @@ import img5 from '../images/wedding1/06.jpg'
   ]
 
 const Gallery = ({ mark }) => {
-  const [tag, setTag] = useState("w2");
+  const [tag, setTag] = useState("num1");
   console.log(mark)
   const containerRef = useRef(null);
+
+  const executeScroll = () => containerRef.current.scrollIntoView()
+
   useEffect(() => {
     if(window && containerRef.current) {
       window.cloudinary.galleryWidget({
@@ -125,10 +132,10 @@ const Gallery = ({ mark }) => {
   //       { 
         if (mark === "Wedding") {
           return (
-            <div>
+              <Container style={{  marginTop: "20px" }}>
                 <ImageList variant="masonry" cols={3} gap={8} px={20}>
-              {data.map(item => (
-                  <ImageListItem key={item.id} tag={item.tag} style={{position: "relative"}} onClick={() => {
+                {data.map(item => (
+                  <ImageListItem key={item.id} tag={item.tag} style={{position: "relative", borderRadius: "5px"}} onClick={() => {
                     setTag(item.tag);
                     console.log(tag)
                     }}>
@@ -137,7 +144,11 @@ const Gallery = ({ mark }) => {
                           alt={item.caption}
                           tag={item.tag}
                           loading="lazy"
-                          onClick={() => setTag(item.tag)}
+                          onClick={() => { 
+                            setTag(item.tag);
+                            executeScroll();
+                          }}
+                          style={{borderRadius: 15}}
                       />
                       <Typography style={{
                           position: "absolute", 
@@ -149,21 +160,26 @@ const Gallery = ({ mark }) => {
                           }}>{item.caption}</Typography>
                   </ImageListItem>
               ))}
-            </ImageList>
-            <div ref={containerRef} style={{ width: '1200px', marginTop: '20px',  }}></div>
-            </div>
+                </ImageList>
+                <div ref={containerRef} style={{ width: '1200px', marginTop: '20px',  }}></div>
+            </Container>
           ) }
           if (mark === "Portrait") {
-            return ( <div>
-                  <ImageList variant="masonry" cols={3} gap={8} px={20}>
+            return (
+              <Container style={{  marginTop: "20px" }}>
+                <ImageList variant="masonry" cols={3} gap={8} px={20}>
                         {portraitData && portraitData.map(item => (
-                            <ImageListItem key={item.caption} tag={item.tag} style={{position: "relative"}} onClick={() => setTag(item.tag)}>
+                            <ImageListItem key={item.caption} tag={item.tag} style={{position: "relative", borderRadius: "5px"}} onClick={() => setTag(item.tag)}>
                                 <img
                                     src={item.image}
                                     alt={item.caption}
                                     tag={item.tag}
                                     loading="lazy"
-                                    onClick={() => setTag(item.tag)}
+                                    onClick={() => { 
+                                      setTag(item.tag);
+                                      executeScroll();
+                                    }}
+                                    style={{borderRadius: 15}}
                                 />
                                 <Typography style={{
                                     position: "absolute", 
@@ -175,36 +191,40 @@ const Gallery = ({ mark }) => {
                                     }}>{item.caption}</Typography>
                             </ImageListItem>
                         ))}
-              </ImageList>
-              <div ref={containerRef} style={{ width: '1200px', marginTop: '20px',  }}></div>
-            </div>   
+                </ImageList>
+                <div ref={containerRef} style={{ width: '1200px', marginTop: '20px',  }}></div>
+              </Container>   
             )
           } if (mark === "Family") {
             return (
-             <div>
-             <ImageList variant="masonry" cols={3} gap={8} px={20}>
-             {familyData && familyData.map(item => (
-                 <ImageListItem key={item.caption} tag={item.tag} style={{position: "relative"}} onClick={() => setTag(item.tag)}>
-                     <img
-                         src={item.image}
-                         alt={item.caption}
-                         tag={item.tag}
-                         loading="lazy"
-                         onClick={() => setTag(item.tag)}
-                     />
-                     <Typography style={{
-                         position: "absolute", 
-                         top: "50%", 
-                         left: "50%", 
-                         transform: "translate(-50%, -50%)",
-                         opacity: "0.3",
-                         fontSize: "50px"
-                         }}>{item.caption}</Typography>
-                 </ImageListItem>
-             ))}
-            </ImageList>
-            <div ref={containerRef} style={{ width: '1200px', marginTop: '20px',  }}></div>
-             </div>
+              <Container style={{  marginTop: "20px" }}>
+                <ImageList variant="masonry" cols={3} gap={8} px={20}>
+                {familyData && familyData.map(item => (
+                    <ImageListItem key={item.caption} tag={item.tag} style={{position: "relative"}} onClick={() => setTag(item.tag)}>
+                        <img
+                            src={item.image}
+                            alt={item.caption}
+                            tag={item.tag}
+                            loading="lazy"
+                            onClick={() => { 
+                              setTag(item.tag);
+                              executeScroll();
+                            }}
+                            style={{borderRadius: 15}}
+                        />
+                        <Typography style={{
+                            position: "absolute", 
+                            top: "50%", 
+                            left: "50%", 
+                            transform: "translate(-50%, -50%)",
+                            opacity: "0.3",
+                            fontSize: "50px"
+                            }}>{item.caption}</Typography>
+                    </ImageListItem>
+                ))}
+                </ImageList>
+                <div ref={containerRef} style={{ width: '1200px', marginTop: '20px',  }}></div>
+            </Container>  
             )
           }       
 }
