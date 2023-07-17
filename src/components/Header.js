@@ -46,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
 const navigationLinks = [
     { name: "About", href: "about" },
     // { name: "Works", href: "gallery" },
-    // { name: "Contacts", href: "/resume.pdf" },
   ];
 
 
@@ -111,8 +110,7 @@ const Header = ( { open, handleOpen } ) => {
                     </IconButton>
                     <Button>
                        {/* <DarkMode/> */}
-                    </Button>
-                 
+                    </Button>    
                 </div>
 
                 </Toolbar>
