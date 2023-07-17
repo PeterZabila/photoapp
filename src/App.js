@@ -9,7 +9,7 @@ import SharedLayout from './components/SharedLayout';
 import { gapi } from 'gapi-script';
 import About from './components/About';
 
-const clientId = "281450817984-lbo71ppusiug27vs7jvqv926bt9n2eiu.apps.googleusercontent.com";
+const clientId = process.env.CLIENT_ID;
 
 function App() {
 
