@@ -4,7 +4,7 @@ import Link from '@mui/material/Link';
 
 const Footer = () => {
     return (
-            <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
+            <Box style={{  width: "100%" }} sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
 
             <Typography
               variant="subtitle1"

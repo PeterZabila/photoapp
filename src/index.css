@@ -24,6 +24,16 @@
   --container-width-lg: 75%;
   --container-width-md: 86%;
   --container-width-sm: 90%;
+
+  --body_background: white;
+  --body_color: black;
+  --link_color: teal;
+}
+
+[data-theme="dark"] {
+  --body_background: #282c34;
+  --body_color: white;
+  --link_color: slategray;
 }
 
 html {
@@ -41,6 +51,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.dark_theme {
+  background-color: var(--color-black);
 }
 
 code {

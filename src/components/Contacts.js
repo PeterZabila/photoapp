@@ -5,6 +5,15 @@ import {RiMessengerLine} from "react-icons/ri";
 import {TbBrandTelegram} from "react-icons/tb";
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import { Box } from '@mui/material';
+import Link from '@material-ui/core/Link';
+import Stack from "@mui/material/Stack";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import PinterestIcon from "@mui/icons-material/Pinterest";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
+import Typography from '@mui/material/Typography';
 
 const Contact = () => {
   const [forma, setForma] = useState({
@@ -94,8 +103,29 @@ const Contact = () => {
             <button type='submit' className='btn btn-primary'>Send Message</button>
           </form>
         </div>
+                <div style={{display: "flex", flexDirection: "row"}}>
+                  <CallOutlinedIcon sx={{ color: "grey" }}/><Typography sx={{ pl: 1, color: "grey" }}>+38 (063) 135-35-52</Typography>
+                </div>
+
+        <Stack direction="row" alignItems="center" spacing={4}> 
+                <Link href="https://www.instagram.com/petro_zabila/">
+                    <InstagramIcon fontSize="large" sx={{ color: "#E1306C" }} />
+                </Link>
+                <Link href="https://www.facebook.com/petro.zabila/">
+                    <FacebookIcon color="primary" fontSize="large" />
+                </Link>
+                <Link href="https://www.pinterest.com/petrozabila/">
+                    <PinterestIcon fontSize="large" sx={{ color: "#E60023" }} />
+                </Link>
+                <Link href="https://www.linkedin.com/in/petro-zabila-685052257/">
+                    <LinkedInIcon fontSize="large" color="primary" />
+                </Link>
+            </Stack>
 
         </div>
+
+       
+
     </section>
   )
 }

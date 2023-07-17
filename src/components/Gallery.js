@@ -12,17 +12,11 @@ import img5 from '../images/wedding1/06.jpg'
 import mod1 from '../images/portrait/mod1.jpg';
 import mod2 from '../images/portrait/mod2.jpg';
 import mod3 from '../images/portrait/mod3.jpg';
+import mod4 from '../images/portrait/mod4.jpeg';
 
-  // const captionStyle = {
-  //   fontSize: "5em",
-  //   fontWeight: "bold",
-  //   opacity: "0.4"
-  // };
-  // const slideNumberStyle = {
-  //   fontSize: "20px",
-  //   fontWeight: "bold",
-  //   opacity: '0.5'
-  // };
+import fam from '../images/family/zol.jpg';
+import fam1 from '../images/family/bud.jpeg';
+import fam2 from '../images/family/gul.jpeg';
  
   const data = [
     {
@@ -73,67 +67,74 @@ import mod3 from '../images/portrait/mod3.jpg';
     {
       id: 2,
       image: mod2,
-      caption: "Anna",
-      tag: 'l'
+      caption: "Yana",
+      tag: 'c'
     },
     {
       id: 3,
       image: mod3,
       caption: "Anastasia",
-      tag: 'c'
+      tag: 'l'
+    },
+    {
+      id: 4,
+      image: mod4,
+      caption: "Alyona",
+      tag: 'a'
     },
   ]
 
   const familyData = [
     {
       id: 1,
-      image: img,
+      image: fam,
       caption: "Zolotonosha",
-      tag: 'Olena'
+      tag: 'zol'
     },
     {
       id: 2,
-      image: img,
+      image: fam1,
       caption: "Oblast",
-      tag: 'Anna'
+      tag: 'bud'
     },
     {
       id: 3,
-      image: img,
+      image: fam2,
       caption: "Cherkasy",
-      tag: 'Anastasia'
+      tag: 'gul'
     },
   ]
 
 const Gallery = ({ mark }) => {
-  const [tag, setTag] = useState("num1");
+  const [tag, setTag] = useState(null);
   console.log(mark)
   const containerRef = useRef(null);
 
   const executeScroll = () => containerRef.current.scrollIntoView()
 
   useEffect(() => {
-    if(window && containerRef.current) {
-      window.cloudinary.galleryWidget({
-        container: containerRef.current,
-        cloudName: 'dq9kynjaj',
-        aspectRatio: '16:9',
-        mediaAssets: [{ tag }],
-        carouselStyle: 'indicators',
-        cariuselLocation: 'bottom'
-      })
-      .render()
+    if (tag) {
+      if(window && containerRef.current) {
+        window.cloudinary.galleryWidget({
+          container: containerRef.current,
+          cloudName: 'dq9kynjaj',
+          aspectRatio: '16:9',
+          mediaAssets: [{ tag }],
+          // carouselStyle: 'indicators',
+          // cariuselLocation: 'bottom'
+        })
+        .render()
+      } else {
+        return null
+      }
     }
+   
   }, [tag]);
 
-  // return (
-  //   <Box>
-  //     <Container>
-  //       { 
         if (mark === "Wedding") {
           return (
               <Container style={{  marginTop: "20px" }}>
-                <ImageList variant="masonry" cols={3} gap={8} px={20}>
+                <ImageList variant="masonry" cols={3} gap={8} px={20} >
                 {data.map(item => (
                   <ImageListItem key={item.id} tag={item.tag} style={{position: "relative", borderRadius: "5px"}} onClick={() => {
                     setTag(item.tag);

@@ -16,6 +16,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import pic10 from '../images/wedding1/10.jpg';
 import pic11 from '../images/wedding1/13.jpeg';
 import pic12 from '../images/wedding1/15.jpeg';
+import main from '../images/main.jpeg'
 
 const cards = [
   {
@@ -29,14 +30,14 @@ const cards = [
     id: 2,
     name: "Portrait",
     src: pic12,
-    description: "Пор",
+    description: "Портрет - це відзеркаделення внутрішнього світу моделі",
 
   },
   {
     id: 3,
     name: "Family",
     src: pic11,
-    description: "",
+    description: "Сімейні фотосети - то OneLove",
 
   }
 ];
@@ -44,13 +45,27 @@ const cards = [
 const defaultTheme = createTheme();
 
 const Home = ({open, handleOpen, handleMark}) => {
+
+    const processMark = (mark) => {
+      handleMark(mark);
+      localStorage.setItem("mark", mark)
+    }
+
     return (
         <ThemeProvider theme={defaultTheme}>
           <CssBaseline />
-          {/* <Header open={open} handleOpen={handleOpen}/> */}
           <main>
             <Box
-              sx={{ bgcolor: 'background.paper', pt: 8, pb: 6 }}
+              sx={{ 
+                bgcolor: 'background.paper', 
+                pt: 8, 
+                pb: 6,
+                // backgroundImage: `url(${main})`,
+                // backgroundSize: "cover",
+                // backgroundPosition: "center",
+                // backgroundRepeat: "no-repeat",
+                position: "relative"
+              }}
             >
               <Container maxWidth="sm">
                 <Typography
@@ -63,7 +78,7 @@ const Home = ({open, handleOpen, handleMark}) => {
                   My photography portfolio
                 </Typography>
                 <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                  Something to say about me. My passion to photography and the process of making photos makes me to go on and develop my skills in this field.
+                  Як визначити, що фотографія чи то музика, чи література - це твоє? Все просто: ти не можеш не фотографувати, не можеш не створювати музику, не можеш не писати...
                 </Typography>
                 <Stack
                   sx={{ pt: 4 }}
@@ -71,10 +86,12 @@ const Home = ({open, handleOpen, handleMark}) => {
                   spacing={2}
                   justifyContent="center"
                 >
-                  <Button variant="contained">Book a wedding</Button>
+                  <img src={main} style={{ position: 'absolute', top: 0, opacity: 0.2, zIndex: -1 }} alt="" />
+                  <Link to="contacts"><Button variant="contained">Book a wedding</Button></Link>
                   <Button variant="outlined">Write me</Button>
                 </Stack>
               </Container>
+              
             </Box>
 
             <Container sx={{ py: 8 }} maxWidth="md">
@@ -90,22 +107,22 @@ const Home = ({open, handleOpen, handleMark}) => {
                       />
                       <CardContent sx={{ flexGrow: 1 }}>
                         <Link to="/gallery" >
-                        <Typography gutterBottom variant="h5" component="h2" onClick={() => handleMark(card.name)}>
+                        <Typography gutterBottom variant="h5" component="h2" onClick={() => processMark(card.name)}>
                           {card.name}
                         </Typography>
                         </Link>
                         <Typography>
-                          This is a media card.
+                          {card.description}
                         </Typography>
                       </CardContent>
                       <CardActions>
                       <Link to="/gallery">
-                        <Button size="small">View</Button>
+                        <Button size="small" onClick={() => handleMark(card.name)}>View</Button>
                       </Link>
                       </CardActions>
                     </Card>
                   </Grid>
-                ))}
+                ))}     
               </Grid>
             </Container>
           </main>

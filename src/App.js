@@ -7,13 +7,15 @@ import Gallery from './components/Gallery';
 import Contacts from './components/Contacts';
 import SharedLayout from './components/SharedLayout';
 import { gapi } from 'gapi-script';
+import About from './components/About';
 
 const clientId = "281450817984-lbo71ppusiug27vs7jvqv926bt9n2eiu.apps.googleusercontent.com";
 
 function App() {
 
+  const localMark = localStorage.getItem("mark");
   const [open, setOpen] = useState(false);
-  const [mark, setMark] = useState("");
+  const [mark, setMark] = useState(localMark ? localMark : "");
   const [selectedImg, setSelectedImg] = useState(null);
   const [loggedIn, setLoggedIn] = useState(false);
 
@@ -47,12 +49,12 @@ function App() {
 
   return (
     <BrowserRouter>
-    
         <Routes>
           <Route path="/" element={<SharedLayout open={open} handleOpen={handleOpen} mark={mark} />}>
             <Route index element={<Home handleMark={handleMark}/>}/>
             <Route path="gallery" element={<Gallery setSelectedImg={setSelectedImg} mark={mark}/>}/>
             <Route path="contacts" element={<Contacts/>}/>
+            <Route path="about" element={<About/>}/>
             {/* </Route> */}
           </Route>
         </Routes>

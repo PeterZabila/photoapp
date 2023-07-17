@@ -1,12 +1,13 @@
 import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
+// import Container from '@material-ui/core/Container'
 import { Outlet } from 'react-router-dom';
 
 
 const SharedLayout = ({ open, handleOpen, mark }) => {
   return (
-    <div style={{position: "relative"}}>
+    <div>
       <Header open={open} handleOpen={handleOpen}/>
         <Outlet/>
       <Footer/>
