@@ -23,7 +23,7 @@ const cards = [
     id: 1,
     name: "Wedding",
     src: pic10,
-    description: "Найщасливіщий день у вашому житті обов'язково має бути на фото. Дозвольте супроволдувати вас у цей день",
+    description: "Найщасливіщий день у вашому житті обов'язково має бути на фото. Дозвольте супроводжувати вас у цей день",
 
   },
   {
@@ -57,7 +57,11 @@ const Home = ({open, handleOpen, handleMark}) => {
           <main>
             <Box
               sx={{ 
-                bgcolor: 'background.paper', 
+                // bgcolor: 'background.paper',
+                // bgcolor: 'rgba(193, 221, 225, 0.07)',
+                // "&:hover": {
+                //   bgcolor: "rgba(229, 177, 180, 0.07)"
+                // }, 
                 pt: 8, 
                 pb: 6,
                 // backgroundImage: `url(${main})`,
@@ -107,7 +111,7 @@ const Home = ({open, handleOpen, handleMark}) => {
                       />
                       <CardContent sx={{ flexGrow: 1 }}>
                         <Link to="/gallery" >
-                        <Typography gutterBottom variant="h5" component="h2" onClick={() => processMark(card.name)}>
+                        <Typography gutterBottom variant="h5" component="h2" color="slategrey" onClick={() => processMark(card.name)}>
                           {card.name}
                         </Typography>
                         </Link>

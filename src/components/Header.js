@@ -24,7 +24,7 @@ import Divider from "@material-ui/core/Divider";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import DarkMode from './DarkMode/DarkMode';
+// import DarkMode from './DarkMode/DarkMode';
 
 const useStyles = makeStyles((theme) => ({
     link: {
@@ -110,12 +110,9 @@ const Header = ( { open, handleOpen } ) => {
                         <AccountCircle />
                     </IconButton>
                     <Button>
-                       <DarkMode/>
+                       {/* <DarkMode/> */}
                     </Button>
-                    
-                        
                  
-                   
                 </div>
 
                 </Toolbar>
