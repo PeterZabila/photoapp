@@ -224,7 +224,7 @@ const Gallery = ({ mark }) => {
                     </ImageListItem>
                 ))}
                 </ImageList>
-                <div ref={containerRef} style={{ width: '1200px', marginTop: '20px',  }}></div>
+                <div ref={containerRef} style={{ width: '100%', marginTop: '20px',  }}></div>
             </Container>  
             )
           }       

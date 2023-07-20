@@ -8,6 +8,7 @@ import Contacts from './components/Contacts';
 import SharedLayout from './components/SharedLayout';
 import { gapi } from 'gapi-script';
 import About from './components/About';
+import Auth from './components/Auth/Auth';
 
 const clientId = process.env.CLIENT_ID;
 
@@ -55,6 +56,7 @@ function App() {
             <Route path="gallery" element={<Gallery setSelectedImg={setSelectedImg} mark={mark}/>}/>
             <Route path="contacts" element={<Contacts/>}/>
             <Route path="about" element={<About/>}/>
+            <Route path="auth" element={<Auth/>}/>
             {/* </Route> */}
           </Route>
         </Routes>
