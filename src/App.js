@@ -57,13 +57,10 @@ function App() {
             <Route path="contacts" element={<Contacts/>}/>
             <Route path="about" element={<About/>}/>
             <Route path="auth" element={<Auth/>}/>
-            {/* </Route> */}
           </Route>
         </Routes>
         <Modal open={open} onClose={() => setOpen(false)} mark={mark} loggedIn={loggedIn} grantAccess={grantAccess} denyAccess={denyAccess}/>
-      
     </BrowserRouter>
-    
   );
 }
 

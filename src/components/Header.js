@@ -1,18 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Link from '@material-ui/core/Link'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import AppBar from '@mui/material/AppBar';
-// import Badge from '@material-ui/core/Badge';
 import Box from '@mui/material/Box';
-// import CameraIcon from '@mui/icons-material/PhotoCamera';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import MailIcon from '@material-ui/icons/Mail';
-// import MoreIcon from '@material-ui/icons/MoreVert';
-// import NotificationsIcon from '@material-ui/icons/Notifications';
 import Toolbar from "@material-ui/core/Toolbar";
-// import Typography from '@mui/material/Typography';
 import AdUnitsIcon from '@mui/icons-material/AdUnits';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -24,6 +21,8 @@ import Divider from "@material-ui/core/Divider";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
+import * as actionType from '../constants/actionTypes';
+import decode from 'jwt-decode';
 // import DarkMode from './DarkMode/DarkMode';
 
 const useStyles = makeStyles((theme) => ({
@@ -50,6 +49,10 @@ const navigationLinks = [
 
 
 const Header = ( { open, handleOpen } ) => {
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const styles = useStyles();
 
@@ -60,20 +63,32 @@ const Header = ( { open, handleOpen } ) => {
         handleOpen(mark)
     }
 
+    const logout = () => {
+        dispatch({ type: actionType.LOGOUT });
+    
+        navigate('/auth');
+    
+        setUser(null);
+      };
+    
+      useEffect(() => {
+        const token = user?.token;
+    
+        if (token) {
+          const decodedToken = decode(token);
+    
+          if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+        }
+    
+        setUser(JSON.parse(localStorage.getItem('profile')));
+      }, [location]);
+
   return (
     <Box>
         <AppBar position="sticky" color="default" style={{ display: "flex", flexDirection: "row", justifyContect: "space-between", padding: "10px"  }}>
         <Container maxWidth="md">
            <Toolbar disableGutters>
            <NavLink to="/"><Avatar className={styles.avatar}>PZ</Avatar></NavLink> 
-           {/* <NavLink to="/" style={{ textDecoration: "none", color: "white" }}>
-                <div style={{ display: "flex", flexDirection: "row", alignItems: "center"}}>
-                    <div><CameraIcon sx={{ mr: 2 }} /></div>
-                    <div><Typography variant="h6" color="inherit" noWrap sx={{ mr: 2 }} >
-                        PZ portfolio
-                    </Typography></div>
-                </div>
-           </NavLink> */}
            <Hidden xsDown>
             <div>
                     {navigationLinks.map((item) => (
@@ -108,9 +123,12 @@ const Header = ( { open, handleOpen } ) => {
                     <IconButton color="default" name="account" onClick={handleMark}> 
                         <AccountCircle />
                     </IconButton>
-                    <Button>
+                    {/* <Button> */}
                        {/* <DarkMode/> */}
-                    </Button>    
+                    {/* </Button>     */}
+                    {user?.result ? (<Button variant="contained" color="secondary" onClick={logout}>
+                       Log out
+                    </Button>) : (<NavLink to="/auth"><Button component={Link} to="/auth" variant="contained" color="primary">Sign In</Button></NavLink>)   }
                 </div>
 
                 </Toolbar>
