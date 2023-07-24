@@ -165,17 +165,17 @@ const Gallery = ({ mark }) => {
                 </ImageList>
                 <div ref={containerRef} style={{ width: '1200px', marginTop: '20px',  }}>
                   
+               
+                </div>
                 <Typography
                   component="h1"
                   variant="h2"
                   align="center"
-                  color="text.primary"
                   gutterBottom
                 >
                  All comments
                 </Typography>
                 <Comments mark={mark}/>
-                </div>
             </Container>
           ) }
           if (mark === "Portrait") {
@@ -208,18 +208,17 @@ const Gallery = ({ mark }) => {
                 </ImageList>
                 <div ref={containerRef} style={{ width: '1200px', marginTop: '20px',  }}>
 
+               
+
+                </div>
                 <Typography
                   component="h1"
                   variant="h2"
                   align="center"
-                  color="text.primary"
                   gutterBottom
                 >
                  All comments
                 </Typography>
-
-                </div>
-
               </Container>   
             )
           } if (mark === "Family") {
