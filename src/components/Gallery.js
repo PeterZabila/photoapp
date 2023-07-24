@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { ImageList, ImageListItem, Box, Typography } from '@material-ui/core';
+import Comments from './comments/Comments'
 import Container from '@mui/material/Container';
 import "react-image-gallery/styles/css/image-gallery.css";
 import img from '../images/wedding1/01.jpg'
@@ -162,7 +163,19 @@ const Gallery = ({ mark }) => {
                   </ImageListItem>
               ))}
                 </ImageList>
-                <div ref={containerRef} style={{ width: '1200px', marginTop: '20px',  }}></div>
+                <div ref={containerRef} style={{ width: '1200px', marginTop: '20px',  }}>
+                  
+                <Typography
+                  component="h1"
+                  variant="h2"
+                  align="center"
+                  color="text.primary"
+                  gutterBottom
+                >
+                 All comments
+                </Typography>
+                <Comments mark={mark}/>
+                </div>
             </Container>
           ) }
           if (mark === "Portrait") {
@@ -193,7 +206,20 @@ const Gallery = ({ mark }) => {
                             </ImageListItem>
                         ))}
                 </ImageList>
-                <div ref={containerRef} style={{ width: '1200px', marginTop: '20px',  }}></div>
+                <div ref={containerRef} style={{ width: '1200px', marginTop: '20px',  }}>
+
+                <Typography
+                  component="h1"
+                  variant="h2"
+                  align="center"
+                  color="text.primary"
+                  gutterBottom
+                >
+                 All comments
+                </Typography>
+
+                </div>
+
               </Container>   
             )
           } if (mark === "Family") {
